@@ -63,4 +63,4 @@ class Admin:
 
     def warning(self):
         pass
-# [['1374', 'name1', 'brand1', 'tedad1', '24000'], ['1375', 'name2', 'brand2', 'tedad2', '25000'], ['1376', 'name3', 'brand3', 'tedad3', '26000']]
+
