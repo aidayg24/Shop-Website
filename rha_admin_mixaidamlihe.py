@@ -38,6 +38,7 @@ class Admin:
         pas = Entry(fr_main, width=30).config(show='*')
         log_btn = Button(fr_main, text='Login', command=self.chekpassword).grid(row=3, column=1, padx=100, pady=6)
         lbl_pas = ttk.Label(fr_main, text="Your Password : ").grid(row=2, column=0)
+        pas.grid(row=2, column=1, sticky=W)
         entry_password = str(pas.get()).encode()
         self.hash_entry_password = hashlib.md5(entry_password).hexdigest()
 
@@ -57,7 +58,8 @@ class Admin:
             btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                                 command=self.charge_stock_by_admin()).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
             btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=loggingadmin.quit).grid(row=10, column=0,
-                                                                                                sticky="ew", padx=5)
+                                                                                                     sticky="ew",
+                                                                                                     padx=5)
             taskbar_frame.grid(row=0, column=0, sticky="ns")
 
             fr_main = Frame(loggingadmin, relief=RAISED, bd=1)
@@ -86,17 +88,50 @@ class Admin:
             logger.error("login failed")
             return False
 
-
-    def change_info(self, user, pas):
+    def change_info(self):
         """the admin can change the user name and password"""
         ###we must have an item in main to change info !
-        file = open(file_path, "w+")
-        self.name = user
-        self.password = pas
-        file.write("user name ," + str(self.name) + ", password," + str(self.password))
-        file.close()
-        ###in main:log.info:"change info successfully"
-        return "the information successfully changed"
+        changpass = StoreWindow()
+        logger.info("admin log in!")
+        changpass.rowconfigure(0, minsize=800, weight=1)
+        changpass.columnconfigure(1, minsize=800, weight=1)
+        taskbar_frame = Frame(changpass, relief=RAISED, bd=2, bg='grey')
+        btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product()).grid(
+            row=0, column=0, sticky="ew", padx=5, pady=5)
+        btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices()).grid(
+            row=1, column=0, sticky="ew", padx=5, pady=5)
+        btn_change_password = Button(taskbar_frame, text='Change Password', bg='VioletRed4',
+                                     command=self.change_info()).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin()).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
+        btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=changpass.quit).grid(row=10, column=0,
+                                                                                              sticky="ew", padx=5)
+        taskbar_frame.grid(row=0, column=0, sticky="ns")
+
+        fr_main = Frame(changpass, relief=RAISED, bd=1)
+        oldpas = Entry(fr_main, width=30).config(show='*')
+        newpas = Entry(fr_main, width=30).config(show='*')
+        log_btn = Button(fr_main, text='change', command=self.chekpassword).grid(row=4, column=1, padx=100, pady=6)
+        log_btn['state'] = 'disable'
+        lbl_oldpas = ttk.Label(fr_main, text="Your old Password : ").grid(row=2, column=0)
+        lbl_newpas = ttk.Label(fr_main, text="Your new Password : ").grid(row=3, column=0)
+        oldpas.grid(row=2, column=1, sticky=W)
+        newpas.grid(row=3, column=1, sticky=W)
+        entry_oldpassword = str(oldpas.get()).encode()
+        self.hash_entry_oldpassword = hashlib.md5(entry_oldpassword).hexdigest()
+        if self.hash_entry_oldpassword == self.password:
+            new_pass = str(newpas).encode()
+            hash_new_pass = hashlib.md5(new_pass).hexdigest()
+            file = open("admin info.txt", "w+")
+            file.write("password," + str(hash_new_pass))
+            file.close()
+            logger.info("Password changed")
+            log_btn['state'] = 'able'
+            messagebox.showinfo("change Password", "Password changed successfully")
+
+        else:
+            messagebox.showerror("change Password", "Wrong password!\nTry again")
+            logger.error("Unsuccessful attempt to change password")
 
     def add_new_product(self, product_name, brand, barcode, price, stock):
         """admin can add new product to the list of products and updates the entrepot"""
