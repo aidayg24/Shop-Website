@@ -112,7 +112,7 @@ class Admin:
 
         fr_main = Frame(changpass, relief=RAISED, bd=1)
         oldpas = Entry(fr_main, width=30).config(show='*')
-        newpas = Entry(fr_main, width=30).config(show='*')
+        self.newpas = Entry(fr_main, width=30).config(show='*')
         log_btn = Button(fr_main, text='change', command=self.changed).grid(row=4, column=1, padx=100, pady=6)
         log_btn['state'] = 'disable'
         lbl_oldpas = ttk.Label(fr_main, text="Your old Password : ").grid(row=2, column=0)
