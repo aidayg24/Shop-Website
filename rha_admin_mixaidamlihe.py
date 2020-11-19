@@ -43,11 +43,11 @@ class Admin:
 
     def chekpassword(self):
         if self.hash_entry_password == self.password:
-            logging = StoreWindow()
+            loggingadmin = StoreWindow()
             logger.info("admin log in!")
-            logging.rowconfigure(0, minsize=800, weight=1)
-            logging.columnconfigure(1, minsize=800, weight=1)
-            taskbar_frame = Frame(logging, relief=RAISED, bd=2, bg='grey')
+            loggingadmin.rowconfigure(0, minsize=800, weight=1)
+            loggingadmin.columnconfigure(1, minsize=800, weight=1)
+            taskbar_frame = Frame(loggingadmin, relief=RAISED, bd=2, bg='grey')
             btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product()).grid(
                 row=0, column=0, sticky="ew", padx=5, pady=5)
             btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices()).grid(
@@ -56,13 +56,13 @@ class Admin:
                                          command=self.change_info()).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
             btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                                 command=self.charge_stock_by_admin()).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
-            btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=logging.quit).grid(row=10, column=0,
+            btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=loggingadmin.quit).grid(row=10, column=0,
                                                                                                 sticky="ew", padx=5)
             taskbar_frame.grid(row=0, column=0, sticky="ns")
 
-            fr_main = Frame(logging, relief=RAISED, bd=1)
+            fr_main = Frame(loggingadmin, relief=RAISED, bd=1)
             file = open("product.csv", 'r')
-            product_list = Listbox(fr_main, yscrollcommand=logging.scrollbar.set)
+            product_list = Listbox(fr_main, yscrollcommand=loggingadmin.scrollbar.set)
             for line in file.readlines():
                 data = line.strip().split(",")
                 show = "category: " + data[0] + " brand: " + data[1] + " barcode: " + data[2] + " price: " + data[
@@ -80,15 +80,12 @@ class Admin:
                     logger.warning("stock of " + product + " = 0")
                     messagebox.showwarning("Inventory is over!!",
                                            "The inventory of {} goods has been completed".format(product))
-
-            ###in main : print("login was successful.")
-            ###in main :log.info("admin log in!")
-            return True
+            loggingadmin.mainloop()
         else:
-            ###in main :print("your password or user name was not correct")
-            ###in main we can manage if the password is wrong or the user name
-            ###in main :log.warning("login failed")
+            messagebox.showerror("Failed login", "Wrong password!\nTry again")
+            logger.error("login failed")
             return False
+
 
     def change_info(self, user, pas):
         """the admin can change the user name and password"""
