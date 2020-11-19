@@ -1,7 +1,15 @@
 import csv
 import hashlib
+import logging
 
-"""save admin info in text file"""
+LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
+logging.basicConfig(filename="logfile.log",
+                    level=logging.DEBUG,
+                    format=LOG_FORMAT,
+                    filemode='a')
+
+
+logger = logging.getLogger()
 
 
 class Admin:
@@ -16,12 +24,12 @@ class Admin:
         hash_my_pass = hashlib.md5(my_pass).hexdigest()
         if hash_my_pass == self.password:
             ###in main : print("login was successful.")
-            ###in main :log.info("admin log in!")
+            logger.info("admin log in!")
             return True
         else:
             ###in main :print("your password or user name was not correct")
             ###in main we can manage if the password is wrong or the user name
-            ###in main :log.warning("login failed")
+            logger.warning("login failed")
             return False
 
     def change_info(self, pas):
@@ -32,7 +40,7 @@ class Admin:
         file = open("admin info.txt", "w+")
         file.write("password," + str(hash_new_pass))
         file.close()
-        ###in main:log.info:"change info successfully"
+        logger.info("change info successfully")
         return "the information successfully changed"
 
     def add_new_product(self, product_name, brand, barcode, price, stock):
@@ -45,7 +53,7 @@ class Admin:
                              'barcode': barcode,
                              'price': price,
                              'stock': stock})
-            ###in main:log.info:"new product added"
+            logger.info("new product added")
 
     def show_invoices(self):
         """admin can see the previous invoices by this method"""
