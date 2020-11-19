@@ -55,6 +55,26 @@ class Admin:
                              'stock': stock})
             logger.info("new product added")
 
+    @staticmethod
+    def charge_stock_by_admin(product_name, brand):
+        """ the function opens the csv file that contains the list of products
+            and updates the stock(number of a product) after admin charge it."""
+        file = open("product.csv", 'r')
+        file_data = file.readlines()
+        file.close()
+        the_num = int(input("the amount of charge:\n"))
+        file_overwrite = open("product.csv", 'w')
+        for line in file_data:
+            data = line.strip().split(",")
+            if data[0] == product_name and data[1] == brand:
+                stock = int(str(data[4]))
+                stock += the_num
+                data[4] = str(stock)
+                new_data = ",".join(data)
+                file_overwrite.write(new_data + "\n")
+            else:
+                file_overwrite.write(line)
+
     def show_invoices(self):
         """admin can see the previous invoices by this method"""
         ###get info from customer !!!write this after customer modole
