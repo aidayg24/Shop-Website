@@ -57,13 +57,17 @@ class Admin:
             taskbar_frame.grid(row=0, column=0, sticky="ns")
 
             fr_main = Frame(logging, relief=RAISED, bd=1)
+            file = open("product.csv", 'r')
             mylist = Listbox(fr_main, yscrollcommand=logging.scrollbar.set)
-            for line in range(100):
-                mylist.insert(END, "This is line number " + str(line))
+            for line in file.readlines():
+                data = line.strip().split(",")
+                show = "category: " + data[0] + " brand: " + data[1] + " barcode: " + data[2] + " price: " + data[
+                    3] + " stock: " + data[4]
+                mylist.insert(END, str(show))
             mylist.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
 
-
             if self.logging_counter:
+                logger.warning("First login: insecure password")
                 messagebox.showwarning("Security and privacy", "Please change your password first")
                 self.logging_counter = False
             ###in main : print("login was successful.")
