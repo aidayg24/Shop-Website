@@ -42,6 +42,8 @@ class Admin:
         entry_password = str(pas.get()).encode()
         self.hash_entry_password = hashlib.md5(entry_password).hexdigest()
 
+        getpass.mainloop()
+
     def chekpassword(self):
         if self.hash_entry_password == self.password:
             loggingadmin = StoreWindow()
@@ -111,27 +113,31 @@ class Admin:
         fr_main = Frame(changpass, relief=RAISED, bd=1)
         oldpas = Entry(fr_main, width=30).config(show='*')
         newpas = Entry(fr_main, width=30).config(show='*')
-        log_btn = Button(fr_main, text='change', command=self.chekpassword).grid(row=4, column=1, padx=100, pady=6)
+        log_btn = Button(fr_main, text='change', command=self.changed).grid(row=4, column=1, padx=100, pady=6)
         log_btn['state'] = 'disable'
         lbl_oldpas = ttk.Label(fr_main, text="Your old Password : ").grid(row=2, column=0)
         lbl_newpas = ttk.Label(fr_main, text="Your new Password : ").grid(row=3, column=0)
         oldpas.grid(row=2, column=1, sticky=W)
-        newpas.grid(row=3, column=1, sticky=W)
+        self.newpas.grid(row=3, column=1, sticky=W)
         entry_oldpassword = str(oldpas.get()).encode()
         self.hash_entry_oldpassword = hashlib.md5(entry_oldpassword).hexdigest()
         if self.hash_entry_oldpassword == self.password:
-            new_pass = str(newpas).encode()
-            hash_new_pass = hashlib.md5(new_pass).hexdigest()
-            file = open("admin info.txt", "w+")
-            file.write("password," + str(hash_new_pass))
-            file.close()
-            logger.info("Password changed")
             log_btn['state'] = 'able'
-            messagebox.showinfo("change Password", "Password changed successfully")
 
         else:
             messagebox.showerror("change Password", "Wrong password!\nTry again")
             logger.error("Unsuccessful attempt to change password")
+
+        changpass.mainloop()
+
+    def changed(self):
+        new_pass = str(self.newpas).encode()
+        hash_new_pass = hashlib.md5(new_pass).hexdigest()
+        file = open("admin info.txt", "w+")
+        file.write("password," + str(hash_new_pass))
+        file.close()
+        logger.info("Password changed")
+        messagebox.showinfo("change Password", "Password changed successfully")
 
     def add_new_product(self, product_name, brand, barcode, price, stock):
         """admin can add new product to the list of products and updates the entrepot"""
