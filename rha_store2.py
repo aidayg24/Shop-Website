@@ -1,10 +1,7 @@
 from tkinter import *  # importing tkinter library
 from tkinter import messagebox
 from tkinter import ttk
-
-
-
-
+from rha_clss_store import StoreWindow
 
 def loggingadmin(self):
     self.logadmin = Tk()
@@ -49,14 +46,7 @@ taskbar_frame.grid(row=0, column=0, sticky="ns")
 
 fr_main = Frame(store, relief=RAISED, bd=1)
 lbl_welcome = Label(fr_main, text='Maktab store\n\n', fg='black', font=('Garamond', 20))
-# lbl_user = Label(fr_main, text='For what purpose do you want to enter the store?\n\n', font=('Garamond', 16))
-# # btn_admin = Button(fr_main, text='Admin', bg='purple', font=('Garamond', 16), width=30, bd=5, command=loggingadmin)
-# btn_customer = Button(fr_main, text='Customer', bg='purple', font=('Garamond', 16), width=30, bd=5,
-#                       command=loggingcustomer)
 lbl_welcome.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
-# lbl_user.grid(row=3, column=4, sticky="ew", padx=5)
-# #btn_admin.grid(row=4, column=4, sticky="ew", padx=5)
-# btn_customer.grid(row=5, column=4, sticky="ew", padx=5)
 fr_main.grid(row=0, column=1, sticky="nsew")
 
 store.mainloop()  # creating a loop for the main window to store the changes
