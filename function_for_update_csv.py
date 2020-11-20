@@ -16,6 +16,10 @@ def update_csv_data_stock():
     file_overwrite = open("product.csv", 'w')
     for line in file_data:
         data = line.strip().split(",")
+        if data[4] == 0:
+            print("the stock of this product is  0. you have to charge this")
+            logger.warning(data[0] + data[1] + "ends")
+
         if data[0] == product_name and data[1] == brand:
             stock = int(str(data[4]))
             if stock <= 10:
