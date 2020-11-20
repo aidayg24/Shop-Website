@@ -1,3 +1,4 @@
+###***aida's comments
 class Customer:
     summ = 0
     list2 = []
@@ -6,15 +7,19 @@ class Customer:
         print(MainList)
         i = 1
         for line in MainList:
+            ###*** you didnt even use the  line so why you didnt write a while loop?
+            ###***somehow I can not understand your code
             print(str(i) + " " + MainList[1] + " " + MainList[2] + " " + MainList[4])
             i = i + 1
 
     def select_items(self, MainList):
         customernum = 0
         while customernum != "finish":
+            ###*** is customer an integer or a string??? first you said customer=0 and now a string?what
+            ###*** is this?
             f = open("Products.txt", "r")
             for line in f:
-                date = line.split()
+                date = line.split()###*** again it would be better to use .strip().split()
                 MainList.append(date)
             customernum = input("Enter the desired product number (Enter the finish to complete the purchase)\n")
             if customernum != "finish":
