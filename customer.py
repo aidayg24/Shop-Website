@@ -100,25 +100,54 @@ class Customer:
         price.grid(row=0, column=2, sticky="w", padx=5, pady=5)
         sum.grid(row=0, column=3, sticky="w", padx=5, pady=5)
         row=2
-        totallsum=0
+        self.totallsum=0
         for product in self.basket:
             producnamebrand = Label(fr_main, text=product[0]+','+product[1])
             price = Label(fr_main, text=product[2])
             number = Label(fr_main,text=product[3])
-            totallsum += int(product[2])*int(product[3])
+            self.totallsum += int(product[2])*int(product[3])
             sum = Label(fr_main,text=str(int(product[2])*int(product[3])))
             producnamebrand.grid(row=row, column=0, sticky="w", padx=5, pady=5)
             number.grid(row=row, column=1, sticky="w", padx=5, pady=5)
             price.grid(row=row, column=2, sticky="w", padx=5, pady=5)
             sum.grid(row=row, column=3, sticky="w", padx=5, pady=5)
             row += 1
-        totall= Label(fr_main,text='totall sum = '+str(totallsum))
+        totall= Label(fr_main,text='totall sum = '+str(self.totallsum))
         totall.grid(row=row, column=3, sticky="w", padx=5, pady=5)
         buy_btn = Button(fr_main, text="Click if you want your purchase to be final", bg='red4', command=self.buy)
         buy_btn.grid(row=row+1,sticky="w", padx=5, pady=5)
         fr_main.grid(row=0, column=1, sticky="nsew")
         baskett.mainloop()
-    def buy(self, basket):
+    def buy(self):
+        messagebox.showinfo('Buy','Your purchase has been registered')
+        logger.info('A purchase was made')
+        file = open("product.csv", 'r')
+        file_data = file.readlines()
+        file.close()
+        for product in self.basket:
+            product_name = product[0]
+            brand = product[1]
+            the_num = int(product[4])
+            file_overwrite = open("product.csv", 'w')
+            for line in file_data:
+                data = line.strip().split(",")
+                if data[0] == product_name and data[1] == brand:
+                    stock = int(str(data[4]))
+                    stock -= the_num
+                    data[4] = str(stock)
+                    new_data = ",".join(data)
+                    file_overwrite.write(new_data + "\n")
+
+        with open('invoke.csv', 'a', newline='') as csvpr:
+            fieldnames = ['product name', 'number', 'price', 'sum','total sum']
+            writer = csv.DictWriter(csvpr, fieldnames=fieldnames)
+            for invoke in self.basket:
+                writer.writerow({'product name': invoke[0]+' - '+invoke[1],
+                                'number': invoke[3],
+                                'price': invoke[2],
+                                'sum': int(invoke[2])*int(invoke[3])})
+            writer.writerow({'total sum': str(self.totallsum)})
+            csvpr.write('\n\n')
         """the customer selects an item to buy and add that to the basket """
         pass
 

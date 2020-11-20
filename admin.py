@@ -74,6 +74,8 @@ class Admin:
                 row=1, column=0, sticky="ew", padx=5, pady=5)
             btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                                 command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+            btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
+                                   command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5,pady=5)
             btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=loggingadmin.quit).grid(row=10, column=0,
                                                                                                      sticky="ew",
                                                                                                      padx=5)
@@ -114,6 +116,8 @@ class Admin:
             row=1, column=0, sticky="ew", padx=5, pady=5)
         btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                             command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
+                               command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=addproduct.quit).grid(row=10, column=0,
                                                                                                sticky="ew", padx=5)
         taskbar_frame.grid(row=0, column=0, sticky="ns")
@@ -158,10 +162,50 @@ class Admin:
             messagebox.showinfo('Add product', 'new product added')
 
     def show_invoices(self):
-        """admin can see the previous invoices by this method"""
-        ###get info from customer !!!write this after customer modole
-        pass
-        ###***this method now is completed in my code . use that!
+        seeinvokes = Toplevel()
+        seeinvokes.menubar = Menu(seeinvokes)
+        seeinvokes.helpmenu = Menu(seeinvokes.menubar, tearoff=0)
+        seeinvokes.helpmenu.add_command(label="About", command=self.about)
+        seeinvokes.menubar.add_cascade(label="Help", menu=seeinvokes.helpmenu)
+        seeinvokes.config(menu=seeinvokes.menubar)  # display the menu
+        seeinvokes.scrollbar = Scrollbar(seeinvokes).grid(row=0, column=0, sticky="nes")
+
+        seeinvokes.rowconfigure(0, minsize=800, weight=1)
+        seeinvokes.columnconfigure(1, minsize=800, weight=1)
+        taskbar_frame = Frame(seeinvokes, relief=RAISED, bd=2, bg='grey')
+        btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product).grid(
+            row=0, column=0, sticky="ew", padx=5, pady=5)
+        btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
+            row=1, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
+                               command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
+        btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=seeinvokes.quit).grid(row=10, column=0,
+                                                                                               sticky="ew", padx=5)
+        taskbar_frame.grid(row=0, column=0, sticky="ns")
+
+        fr_main = Frame(seeinvokes, relief=RAISED, bd=1)
+        file = open("invoke.csv", 'r')
+        row = 3
+        for line in file.readlines():
+            d = line.strip().split(",")
+            for row in d:
+                data=row.strip().split(',')
+                productname = Label(fr_main, text=data[0])
+                number = Label(fr_main, text=data[1])
+                price = Label(fr_main, text=data[2])
+                sum =Label(fr_main, text=data[3])
+                totallsum = Label(fr_main, text=data[4])
+                productname.grid(row=row, column=0, sticky="w", padx=5, pady=5)
+                number.grid(row=row, column=1, sticky="w", padx=5, pady=5)
+                price.grid(row=row, column=2, sticky="w", padx=5, pady=5)
+                sum.grid(row=row, column=3, sticky="w", padx=5, pady=5)
+                totallsum.grid(row=row, column=4, sticky="w", padx=5, pady=5)
+                row += 1
+
+        fr_main.grid(row=0, column=1, sticky="nsew")
+        seeinvokes.mainloop()
 
     def charge_stock_by_admin(self):
         charge = Toplevel()
@@ -181,6 +225,8 @@ class Admin:
             row=1, column=0, sticky="ew", padx=5, pady=5)
         btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                             command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
+                               command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=charge.quit).grid(row=10, column=0,
                                                                                            sticky="ew", padx=5)
         taskbar_frame.grid(row=0, column=0, sticky="ns")
@@ -217,3 +263,48 @@ class Admin:
                 messagebox.showerror('charge product', 'Invalid barcode')
                 logger.error('Enter an invalid barcode to charge the goods')
                 file_overwrite.write(line)
+
+    def seeproduct(self):
+        loggingadmin = Toplevel()
+        loggingadmin.menubar = Menu(loggingadmin)
+        loggingadmin.helpmenu = Menu(loggingadmin.menubar, tearoff=0)
+        loggingadmin.helpmenu.add_command(label="About", command=self.about)
+        loggingadmin.menubar.add_cascade(label="Help", menu=loggingadmin.helpmenu)
+        loggingadmin.config(menu=loggingadmin.menubar)  # display the menu
+        loggingadmin.scrollbar = Scrollbar(loggingadmin).grid(row=0, column=0, sticky="nes")
+        logger.info("admin log in!")
+        loggingadmin.rowconfigure(0, minsize=800, weight=1)
+        loggingadmin.columnconfigure(1, minsize=800, weight=1)
+        taskbar_frame = Frame(loggingadmin, relief=RAISED, bd=2, bg='grey')
+        btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product).grid(
+            row=0, column=0, sticky="ew", padx=5, pady=5)
+        btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
+            row=1, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
+                               command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
+        btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=loggingadmin.quit).grid(row=10, column=0,
+                                                                                                 sticky="ew",
+                                                                                                 padx=5)
+        taskbar_frame.grid(row=0, column=0, sticky="ns")
+
+        fr_main = Frame(loggingadmin, relief=RAISED, bd=1)
+        file = open("product.csv", 'r')
+        row=0
+        for line in file.readlines():
+            data = line.strip().split(",")
+            category = Label(fr_main, text=data[0])
+            brand = Label(fr_main, text=data[1])
+            barcode = Label(fr_main, text=data[2])
+            price = Label(fr_main, text=data[3])
+            stock = Label(fr_main, text=data[4])
+            category.grid(row=row, column=0, sticky="w", padx=5, pady=5)
+            brand.grid(row=row, column=1, sticky="w", padx=5, pady=5)
+            barcode.grid(row=row, column=2, sticky="w", padx=5, pady=5)
+            price.grid(row=row, column=3, sticky="w", padx=5, pady=5)
+            stock.grid(row=row, column=4, sticky="w", padx=5, pady=5)
+            row += 1
+        fr_main.grid(row=0, column=1, sticky="nsew")
+        file = open("product.csv", 'r')
+
