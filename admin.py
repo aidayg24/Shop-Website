@@ -84,11 +84,15 @@ class Admin:
             fr_main = Frame(loggingadmin, relief=RAISED, bd=1)
             fr_main.grid(row=0, column=1, sticky="nsew")
 
-            # if len(Admin.zero_stock) != 0:
-            #     for product in Admin.zero_stock:
-            #         logger.warning("stock of " + product + " = 0")
-            #         messagebox.showwarning("Inventory is over!!",
-            #                                "The inventory of {} goods has been completed".format(product))
+            file = open("product.csv", 'r')
+            line_counter=0
+            for line in file.readlines():
+                data = line.strip().split(",")
+                if line_counter>0:
+                    if int(data[4])==0:
+                        messagebox.showerror('storeroom','Inventory with {} barcode is exhausted'.format(data[2]))
+                        logger.warning('Inventory with {} barcode is exhausted'.format(data[2]))
+                line_counter+=1
 
             loggingadmin.mainloop()
         else:
