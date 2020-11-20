@@ -1,0 +1,43 @@
+Aida's codes:
+    whats in this branch:
+    1.admin info.txt:
+        we saved the hash of admin's password in this txt file for security.The password
+        by default is 0000.
+
+    2.invoice.csv:
+        we saved all the invoices in this csv file and admin can see all of them.
+
+    3.product.csv:
+        this csv file is the list of products that we have in the online shop.
+
+    4.logfile.log:
+        we saved all logs like "admin login","login failed "and... in this file.
+
+    5.aida_admin.py:
+        this module contains all the methods that admin needs.
+        login method , change information (password)method ,a method to add new product to website,
+        a method for charging a product and finally a method for see all the invoices from invoice.csv.
+
+    6.customer.py:
+        this module contains all the method that customer needs.
+        search method for searching in website for an specific product,buy method that adds
+        an item in customer basket and remove method that can remove an item from the basket
+        add to invoice method that adds the item in basket to invoice.csv and admin can see them later
+        and at last show invoice method that shows the basket to customer.
+
+
+    7.aida_use_logger.py:
+        this module is the structure of logging and other members of the group can use this
+        module in their codes!!
+
+    7.function_for_update_csv.py:
+        this module contains a function and other members of group can use this function
+        in main. when customer buy something this function will updates the number of that
+        product in the stock so we should call this function after customer buy something
+        in main!
+
+    8.home_page.py:
+        this module contains two functions. one of them is for admin and this function shows
+        all the products with their barcodes and details to admin and other one is fo customer
+        and show the products with less details in home page of online shop.
+        other members of group can use this module in main!
