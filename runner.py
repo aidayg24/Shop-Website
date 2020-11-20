@@ -45,11 +45,9 @@ file = open("product.csv", 'r')
 row=3
 
 for line in file.readlines():
-    print(line)
     data = line.strip().split(",")
     show=Label(fr_main, text='{}    {}    {}'.format(data[0] , data[1] , data[3] )+ "\n")
     show.grid(row=row,column=0, sticky="w", padx=5, pady=5)
-    print(show)
     row+=1
 file.close()
 lbl_welcome.grid(row=2, column=0, sticky="ew", padx=5, pady=5)

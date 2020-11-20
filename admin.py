@@ -283,7 +283,9 @@ class Admin:
                 data[4] = str(stock)
                 new_data = ",".join(data)
                 file_overwrite.write(new_data + "\n")
+                messagebox.showinfo('charge product', 'inventory increased')
+                logger.info('The inventory was charged')
             else:
+                messagebox.showerror('charge product','Invalid barcode')
+                logger.error('Enter an invalid barcode to charge the goods')
                 file_overwrite.write(line)
-        messagebox.showinfo('charge product', 'inventory increased')
-        logger.info('The inventory was charged')
