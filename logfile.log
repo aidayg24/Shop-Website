@@ -56,3 +56,25 @@ INFO 2020-11-20 19:46:25,737 - admin log in!
 INFO 2020-11-20 19:46:55,552 - admin log in!
 INFO 2020-11-20 19:46:56,897 - admin log in!
 INFO 2020-11-20 19:46:57,834 - admin log in!
+ERROR 2020-11-21 00:02:32,562 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:02:43,786 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:02:47,265 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:02:53,666 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:02:54,800 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:10:05,897 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:10:07,169 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:10:20,928 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:11:40,721 - Unsuccessful attempt to buy goods
+INFO 2020-11-21 00:11:58,817 - An item was added to a customers basket
+ERROR 2020-11-21 00:12:00,944 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:14:43,057 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:14:48,647 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:14:49,480 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:14:50,489 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:15:31,224 - Unsuccessful attempt to buy goods
+ERROR 2020-11-21 00:15:32,712 - Unsuccessful attempt to buy goods
+INFO 2020-11-21 00:28:31,808 - An item was added to a customers basket
+INFO 2020-11-21 00:31:21,262 - An item was added to a customers basket
+INFO 2020-11-21 00:32:34,102 - An item was added to a customers basket
+INFO 2020-11-21 00:39:20,142 - An item was added to a customers basket
+INFO 2020-11-21 00:39:33,982 - An item was added to a customers basket
