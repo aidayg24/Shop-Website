@@ -4,7 +4,6 @@ from tkinter import *
 from tkinter import messagebox
 import hashlib
 import logging
-#####***aida edit with this format of comments!
 
 LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
 logging.basicConfig(filename="logfile.log",
@@ -16,13 +15,11 @@ logger = logging.getLogger()
 
 
 class Admin:
-    zero_stock = []
-
+    logging_counter=True
     def __init__(self):
         file = open("admin info.txt", "r")
         password = file.readline().split(",")
         self.password = str(password[1])  # the password by default is 0000
-        self.logging_counter = True
         self.hash_entry_password = None
 
     def about(self):
@@ -55,7 +52,7 @@ class Admin:
         entry_password = pas.get().encode()
         self.hash_entry_password = hashlib.md5(entry_password).hexdigest()
         log_btn = Button(fr_main, text='Login', command=self.chekpassword).grid(row=3, column=1,
-                                                                                                     padx=100, pady=6)
+                                                                                padx=100, pady=6)
         fr_main.grid(row=0, column=1, sticky="nsew")
         getpass.mainloop()
 
@@ -88,10 +85,10 @@ class Admin:
 
             fr_main = Frame(loggingadmin, relief=RAISED, bd=1)
             fr_main.grid(row=0, column=1, sticky="nsew")
-            if self.logging_counter:
+            if Admin.logging_counter:
                 logger.warning("First login: insecure password")
                 messagebox.showwarning("Security and privacy", "Please change your password first")
-                self.logging_counter = False
+                Admin.logging_counter = False
 
             # if len(Admin.zero_stock) != 0:
             #     for product in Admin.zero_stock:
@@ -172,7 +169,7 @@ class Admin:
         addproduct.menubar.add_cascade(label="Help", menu=addproduct.helpmenu)
         addproduct.config(menu=addproduct.menubar)  # display the menu
         addproduct.scrollbar = Scrollbar(addproduct).grid(row=0, column=0, sticky="nes")
-        
+
         addproduct.rowconfigure(0, minsize=800, weight=1)
         addproduct.columnconfigure(1, minsize=800, weight=1)
         taskbar_frame = Frame(addproduct, relief=RAISED, bd=2, bg='grey')
@@ -210,11 +207,11 @@ class Admin:
         addproduct.mainloop()
 
     def adding(self):
-        productname=self.product_name.get()
-        brand=self.brand.get()
-        barcode=self.barcode.get()
-        price=self.price.get()
-        stock=self.stock.get()
+        productname = self.product_name.get()
+        brand = self.brand.get()
+        barcode = self.barcode.get()
+        price = self.price.get()
+        stock = self.stock.get()
 
         with open('product.csv', 'a', newline='') as csvpr:
             fieldnames = ['product name', 'brand', 'barcode', 'price', 'stock']
@@ -286,6 +283,6 @@ class Admin:
                 messagebox.showinfo('charge product', 'inventory increased')
                 logger.info('The inventory was charged')
             else:
-                messagebox.showerror('charge product','Invalid barcode')
+                messagebox.showerror('charge product', 'Invalid barcode')
                 logger.error('Enter an invalid barcode to charge the goods')
                 file_overwrite.write(line)

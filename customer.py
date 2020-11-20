@@ -1,11 +1,23 @@
-class Customer:
-    def __init__(self, basket, invoice, final_price):
-        self.basket = basket
-        self.invoice = invoice
-        self.price = final_price
+import csv
+from tkinter import ttk
+from tkinter import *
+from tkinter import messagebox
+import hashlib
+import logging
 
-    @staticmethod
-    def search(category, brand):
+LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
+logging.basicConfig(filename="logfile.log",
+                    level=logging.DEBUG,
+                    format=LOG_FORMAT,
+                    filemode='a')
+
+logger = logging.getLogger()
+
+class Customer:
+    def __init__(self):
+
+    def search(self):
+        charge = Toplevel()
         """this method search in shop for the product that
          customer wants by giving the category and brand
          and return the price of the product"""
