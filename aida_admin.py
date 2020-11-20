@@ -8,7 +8,6 @@ logging.basicConfig(filename="logfile.log",
                     format=LOG_FORMAT,
                     filemode='a')
 
-
 logger = logging.getLogger()
 
 
@@ -34,7 +33,6 @@ class Admin:
 
     def change_info(self, pas):
         """the admin can change the user name and password"""
-        ###we must have an item in main to change info !
         new_pass = str(pas).encode()
         hash_new_pass = hashlib.md5(new_pass).hexdigest()
         file = open("admin info.txt", "w+")
@@ -46,9 +44,9 @@ class Admin:
     def add_new_product(self, product_name, brand, barcode, price, stock):
         """admin can add new product to the list of products and updates the entrepot"""
         with open('product.csv', 'a', newline='') as csvpr:
-            fieldnames = ['product name', 'brand', 'barcode', 'price', 'stock']
+            fieldnames = ['category', 'brand', 'barcode', 'price', 'stock']
             writer = csv.DictWriter(csvpr, fieldnames=fieldnames)
-            writer.writerow({'product name': product_name,
+            writer.writerow({'category': product_name,
                              'brand': brand,
                              'barcode': barcode,
                              'price': price,
@@ -56,7 +54,7 @@ class Admin:
             logger.info("new product added")
 
     @staticmethod
-    def charge_stock_by_admin(product_name, brand):
+    def charge_stock_by_admin(brand, barcode):
         """ the function opens the csv file that contains the list of products
             and updates the stock(number of a product) after admin charge it."""
         file = open("product.csv", 'r')
@@ -66,7 +64,7 @@ class Admin:
         file_overwrite = open("product.csv", 'w')
         for line in file_data:
             data = line.strip().split(",")
-            if data[0] == product_name and data[1] == brand:
+            if data[1] == brand and data[2] == barcode:
                 stock = int(str(data[4]))
                 stock += the_num
                 data[4] = str(stock)
@@ -75,10 +73,14 @@ class Admin:
             else:
                 file_overwrite.write(line)
 
-    def show_invoices(self):
+    @staticmethod
+    def show_invoices():
         """admin can see the previous invoices by this method"""
-        ###get info from customer !!!write this after customer modole
-        pass
+        file = open("invoice.csv", "r")
+        for line in file.readlines():
+            data = line.strip().split(",")
+            the_data = " ".join(data)
+            print(the_data)
 
     def __str__(self):
         pass
