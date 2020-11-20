@@ -42,6 +42,7 @@ class Admin:
         entry_password = str(pas.get()).encode()
         self.hash_entry_password = hashlib.md5(entry_password).hexdigest()
 
+        fr_main.grid(row=0, column=1, sticky="nsew")
         getpass.mainloop()
 
     def chekpassword(self):
@@ -73,7 +74,7 @@ class Admin:
                     3] + " stock: " + data[4]
                 product_list.insert(END, str(show))
             product_list.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
-
+            fr_main.grid(row=0, column=1, sticky="nsew")
             if self.logging_counter:
                 logger.warning("First login: insecure password")
                 messagebox.showwarning("Security and privacy", "Please change your password first")
@@ -84,6 +85,7 @@ class Admin:
                     logger.warning("stock of " + product + " = 0")
                     messagebox.showwarning("Inventory is over!!",
                                            "The inventory of {} goods has been completed".format(product))
+
             loggingadmin.mainloop()
         else:
             messagebox.showerror("Failed login", "Wrong password!\nTry again")
@@ -127,7 +129,7 @@ class Admin:
         else:
             messagebox.showerror("change Password", "Wrong password!\nTry again")
             logger.error("Unsuccessful attempt to change password")
-
+        fr_main.grid(row=0, column=1, sticky="nsew")
         changpass.mainloop()
 
     def changed(self):
@@ -175,6 +177,9 @@ class Admin:
         self.barcode.grid(row=4, column=1, sticky=W)
         self.price.grid(row=5, column=1, sticky=W)
         self.stock.grid(row=6, column=1, sticky=W)
+        fr_main.grid(row=0, column=1, sticky="nsew")
+
+        addproduct.mainloop()
 
     def adding(self):
         with open('product.csv', 'a', newline='') as csvpr:
@@ -193,25 +198,50 @@ class Admin:
         ###get info from customer !!!write this after customer modole
         pass
 
-    @staticmethod
-    def charge_stock_by_admin(product_name, brand):
+    def charge_stock_by_admin(self):
+        charge = StoreWindow()
+        logger.info("admin log in!")
+        charge.rowconfigure(0, minsize=800, weight=1)
+        charge.columnconfigure(1, minsize=800, weight=1)
+        taskbar_frame = Frame(charge, relief=RAISED, bd=2, bg='grey')
+        btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product()).grid(
+            row=0, column=0, sticky="ew", padx=5, pady=5)
+        btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices()).grid(
+            row=1, column=0, sticky="ew", padx=5, pady=5)
+        btn_change_password = Button(taskbar_frame, text='Change Password', bg='VioletRed4',
+                                     command=self.change_info()).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin()).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
+        btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=charge.quit).grid(row=10, column=0,
+                                                                                              sticky="ew", padx=5)
+        taskbar_frame.grid(row=0, column=0, sticky="ns")
+
+        fr_main = Frame(charge, relief=RAISED, bd=1)
+        self.barcode = Entry(fr_main, width=30)
+        num=Scale(fr_main, from_=1, to=100, orient=HORIZONTAL)
+        charge_btn = Button(fr_main, text='Charge', command=self.charged()).grid(row=4, column=1, padx=100, pady=6)
+        lbl_barcode = ttk.Label(fr_main, text="barcode : ").grid(row=2, column=0)
+        lbl_num = ttk.Label(fr_main,text="How many? ").grid(row=3, column=0)
+        self.barcode.grid(row=2, column=1, sticky=W)
+        num.grid(row=3,column=1,sticky=W)
+        fr_main.grid(row=0, column=1, sticky="nsew")
+        self.the_num=int(num.get())
+
+    def charged(self):
         """ the function opens the csv file that contains the list of products
             and updates the stock(number of a product) after admin charge it."""
         file = open("product.csv", 'r')
         file_data = file.readlines()
         file.close()
-        the_num = int(input("the amount of charge:\n"))
         file_overwrite = open("product.csv", 'w')
         for line in file_data:
             data = line.strip().split(",")
-            if data[0] == product_name and data[1] == brand:
+            if data[2] == self.barcode:
                 stock = int(str(data[4]))
-                stock += the_num
+                stock += self.the_num
                 data[4] = str(stock)
                 new_data = ",".join(data)
                 file_overwrite.write(new_data + "\n")
             else:
                 file_overwrite.write(line)
-
-    def __str__(self):
-        pass
+        messagebox.showinfo('charge product','{} inventory increased'.format(self.barcode))
