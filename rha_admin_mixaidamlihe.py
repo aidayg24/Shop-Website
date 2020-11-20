@@ -5,6 +5,7 @@ from tkinter import *
 from tkinter import messagebox
 import hashlib
 import logging
+#####***aida edit with this format of comments!
 
 LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
 logging.basicConfig(filename="logfile.log",
@@ -31,7 +32,8 @@ class Admin:
         taskbar_frame = Frame(getpass, relief=RAISED, bd=2, bg='grey')
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=getpass.quit).grid(row=10,
                                                                                             column=0, sticky="ew",
-                                                                                            padx=5)
+                                                                                           padx=5)
+        ###***what is btn_exit?? you did not use this in the rest of program!
         taskbar_frame.grid(row=0, column=0, sticky="ns")
 
         fr_main = Frame(getpass, relief=RAISED, bd=1)
@@ -41,6 +43,9 @@ class Admin:
         pas.grid(row=2, column=1, sticky=W)
         entry_password = str(pas.get()).encode()
         self.hash_entry_password = hashlib.md5(entry_password).hexdigest()
+        ###***its a wierd structure for get password from admin! why you use 2 methods first login
+        ###*** and check password.There is no need for 2 methods! please check my aida_admin module
+        ###*** i think giving the password from admin as an arguman of method is easier .read my code!
 
         fr_main.grid(row=0, column=1, sticky="nsew")
         getpass.mainloop()
@@ -94,9 +99,9 @@ class Admin:
 
     def change_info(self):
         """the admin can change the user name and password"""
-        ###we must have an item in main to change info !
         changpass = StoreWindow()
         logger.info("admin log in!")
+        ###*** please write this logger in login method not here!
         changpass.rowconfigure(0, minsize=800, weight=1)
         changpass.columnconfigure(1, minsize=800, weight=1)
         taskbar_frame = Frame(changpass, relief=RAISED, bd=2, bg='grey')
@@ -140,6 +145,7 @@ class Admin:
         file.close()
         logger.info("Password changed")
         messagebox.showinfo("change Password", "Password changed successfully")
+        ###***you can delete this method and add this to change_info!
 
     def add_new_product(self):
         """admin can add new product to the list of products and updates the entrepot"""
@@ -197,6 +203,7 @@ class Admin:
         """admin can see the previous invoices by this method"""
         ###get info from customer !!!write this after customer modole
         pass
+        ###***this method now is completed in my code . use that!
 
     def charge_stock_by_admin(self):
         charge = StoreWindow()
