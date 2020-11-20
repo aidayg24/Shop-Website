@@ -245,3 +245,4 @@ class Admin:
             else:
                 file_overwrite.write(line)
         messagebox.showinfo('charge product','{} inventory increased'.format(self.barcode))
+        logger.info('The inventory was charged')
