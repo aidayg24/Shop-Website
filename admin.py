@@ -72,8 +72,6 @@ class Admin:
                 row=0, column=0, sticky="ew", padx=5, pady=5)
             btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
                 row=1, column=0, sticky="ew", padx=5, pady=5)
-            btn_change_password = Button(taskbar_frame, text='Change Password', bg='VioletRed4',
-                                         command=self.change_info).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
             btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                                 command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
             btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=loggingadmin.quit).grid(row=10, column=0,
@@ -96,51 +94,6 @@ class Admin:
             logger.error("login failed")
             return False
 
-    def change_info(self):
-        """the admin can change the user name and password"""
-        ###we must have an item in main to change info !
-        changpass = Toplevel()
-        changpass.menubar = Menu(changpass)
-        changpass.helpmenu = Menu(changpass.menubar, tearoff=0)
-        changpass.helpmenu.add_command(label="About", command=self.about)
-        changpass.menubar.add_cascade(label="Help", menu=changpass.helpmenu)
-        changpass.config(menu=changpass.menubar)  # display the menu
-        changpass.scrollbar = Scrollbar(changpass).grid(row=0, column=0, sticky="nes")
-        logger.info("admin log in!")
-        ###*** please write this logger in login method not here!
-        changpass.rowconfigure(0, minsize=800, weight=1)
-        changpass.columnconfigure(1, minsize=800, weight=1)
-        taskbar_frame = Frame(changpass, relief=RAISED, bd=2, bg='grey')
-        btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product).grid(
-            row=0, column=0, sticky="ew", padx=5, pady=5)
-        btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
-            row=1, column=0, sticky="ew", padx=5, pady=5)
-        btn_change_password = Button(taskbar_frame, text='Change Password', bg='VioletRed4',
-                                     command=self.change_info).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
-        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
-                            command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
-        btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=changpass.quit).grid(row=10, column=0,
-                                                                                              sticky="ew", padx=5)
-        taskbar_frame.grid(row=0, column=0, sticky="ns")
-
-        fr_main = Frame(changpass, relief=RAISED, bd=1)
-        self.newpas = Entry(fr_main, width=30).config(show='*')
-        log_btn = Button(fr_main, text='change', command=self.changed).grid(row=4, column=1, padx=100, pady=6)
-        lbl_newpas = ttk.Label(fr_main, text="Your new Password : ").grid(row=3, column=0)
-        self.newpas.grid(row=3, column=1, sticky=W)
-        fr_main.grid(row=0, column=1, sticky="nsew")
-        changpass.mainloop()
-
-    def changed(self):
-        new_pass = str(self.newpas).encode()
-        hash_new_pass = hashlib.md5(new_pass).hexdigest()
-        file = open("admin info.txt", "w+")
-        file.write("password," + str(hash_new_pass))
-        file.close()
-        logger.info("Password changed")
-        messagebox.showinfo("change Password", "Password changed successfully")
-        ###***you can delete this method and add this to change_info!
-
     def add_new_product(self):
         """admin can add new product to the list of products and updates the entrepot"""
 
@@ -159,8 +112,6 @@ class Admin:
             row=0, column=0, sticky="ew", padx=5, pady=5)
         btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
             row=1, column=0, sticky="ew", padx=5, pady=5)
-        btn_change_password = Button(taskbar_frame, text='Change Password', bg='VioletRed4',
-                                     command=self.change_info).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
         btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                             command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=addproduct.quit).grid(row=10, column=0,
@@ -228,8 +179,6 @@ class Admin:
             row=0, column=0, sticky="ew", padx=5, pady=5)
         btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
             row=1, column=0, sticky="ew", padx=5, pady=5)
-        btn_change_password = Button(taskbar_frame, text='Change Password', bg='VioletRed4',
-                                     command=self.change_info).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
         btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
                             command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=charge.quit).grid(row=10, column=0,
