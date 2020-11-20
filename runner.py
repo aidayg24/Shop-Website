@@ -46,8 +46,12 @@ row=3
 
 for line in file.readlines():
     data = line.strip().split(",")
-    show=Label(fr_main, text='{}    {}    {}'.format(data[0] , data[1] , data[3] )+ "\n")
-    show.grid(row=row,column=0, sticky="w", padx=5, pady=5)
+    nameproduc=Label(fr_main,text=data[0])
+    brand=Label(fr_main,text=data[1])
+    price=Label(fr_main,text=data[3])
+    nameproduc.grid(row=row,column=0, sticky="w", padx=5, pady=5)
+    brand.grid(row=row,column=1, sticky="w", padx=5, pady=5)
+    price.grid(row=row,column=2, sticky="w", padx=5, pady=5)
     row+=1
 file.close()
 lbl_welcome.grid(row=2, column=0, sticky="ew", padx=5, pady=5)

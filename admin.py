@@ -15,7 +15,6 @@ logger = logging.getLogger()
 
 
 class Admin:
-    logging_counter=True
     def __init__(self):
         file = open("admin info.txt", "r")
         password = file.readline().split(",")
@@ -51,8 +50,7 @@ class Admin:
 
         entry_password = pas.get().encode()
         self.hash_entry_password = hashlib.md5(entry_password).hexdigest()
-        log_btn = Button(fr_main, text='Login', command=self.chekpassword).grid(row=3, column=1,
-                                                                                padx=100, pady=6)
+        log_btn = Button(fr_main, text='Login', command=self.chekpassword).grid(row=3, column=1,padx=100, pady=6)
         fr_main.grid(row=0, column=1, sticky="nsew")
         getpass.mainloop()
 
@@ -85,10 +83,6 @@ class Admin:
 
             fr_main = Frame(loggingadmin, relief=RAISED, bd=1)
             fr_main.grid(row=0, column=1, sticky="nsew")
-            if Admin.logging_counter:
-                logger.warning("First login: insecure password")
-                messagebox.showwarning("Security and privacy", "Please change your password first")
-                Admin.logging_counter = False
 
             # if len(Admin.zero_stock) != 0:
             #     for product in Admin.zero_stock:
@@ -130,22 +124,10 @@ class Admin:
         taskbar_frame.grid(row=0, column=0, sticky="ns")
 
         fr_main = Frame(changpass, relief=RAISED, bd=1)
-        oldpas = Entry(fr_main, width=30).config(show='*')
         self.newpas = Entry(fr_main, width=30).config(show='*')
         log_btn = Button(fr_main, text='change', command=self.changed).grid(row=4, column=1, padx=100, pady=6)
-        log_btn['state'] = 'disable'
-        lbl_oldpas = ttk.Label(fr_main, text="Your old Password : ").grid(row=2, column=0)
         lbl_newpas = ttk.Label(fr_main, text="Your new Password : ").grid(row=3, column=0)
-        oldpas.grid(row=2, column=1, sticky=W)
         self.newpas.grid(row=3, column=1, sticky=W)
-        entry_oldpassword = str(oldpas.get()).encode()
-        self.hash_entry_oldpassword = hashlib.md5(entry_oldpassword).hexdigest()
-        if self.hash_entry_oldpassword == self.password:
-            log_btn['state'] = 'able'
-
-        else:
-            messagebox.showerror("change Password", "Wrong password!\nTry again")
-            logger.error("Unsuccessful attempt to change password")
         fr_main.grid(row=0, column=1, sticky="nsew")
         changpass.mainloop()
 
