@@ -1,1 +1,37 @@
 
+ERROR 2020-11-20 16:26:53,289 - login failed
+ERROR 2020-11-20 16:29:31,201 - login failed
+ERROR 2020-11-20 16:30:12,228 - login failed
+INFO 2020-11-20 16:30:50,684 - admin log in!
+INFO 2020-11-20 16:36:09,232 - admin log in!
+INFO 2020-11-20 16:36:09,232 - admin log in!
+INFO 2020-11-20 16:39:59,557 - admin log in!
+INFO 2020-11-20 16:54:41,273 - admin log in!
+INFO 2020-11-20 16:55:14,211 - new product added
+INFO 2020-11-20 16:55:26,837 - admin log in!
+INFO 2020-11-20 16:55:51,653 - The inventory was charged
+INFO 2020-11-20 16:59:25,978 - admin log in!
+INFO 2020-11-20 16:59:54,074 - new product added
+INFO 2020-11-20 17:00:04,219 - admin log in!
+INFO 2020-11-20 17:00:25,925 - The inventory was charged
+INFO 2020-11-20 17:00:33,762 - admin log in!
+INFO 2020-11-20 17:15:59,543 - admin log in!
+INFO 2020-11-20 17:16:02,147 - admin log in!
+INFO 2020-11-20 17:45:34,944 - admin log in!
+INFO 2020-11-20 17:46:05,581 - new product added
+INFO 2020-11-20 17:46:53,017 - new product added
+INFO 2020-11-20 17:46:57,672 - admin log in!
+INFO 2020-11-20 17:47:29,244 - The inventory was charged
+INFO 2020-11-20 17:48:58,154 - admin log in!
+INFO 2020-11-20 17:49:22,348 - new product added
+INFO 2020-11-20 17:49:39,653 - admin log in!
+INFO 2020-11-20 17:49:50,378 - new product added
+INFO 2020-11-20 17:51:52,567 - admin log in!
+WARNING 2020-11-20 17:51:52,567 - First login: insecure password
+INFO 2020-11-20 17:52:16,243 - new product added
+INFO 2020-11-20 17:56:26,505 - admin log in!
+WARNING 2020-11-20 17:56:26,505 - First login: insecure password
+INFO 2020-11-20 17:56:43,659 - new product added
+INFO 2020-11-20 18:01:05,317 - admin log in!
+WARNING 2020-11-20 18:01:05,317 - First login: insecure password
+INFO 2020-11-20 18:01:32,304 - new product added
