@@ -224,11 +224,6 @@ class Admin:
                              'barcode': barcode,
                              'price': price,
                              'stock': stock})
-            print({'product name': productname,
-                             'brand': brand,
-                             'barcode': barcode,
-                             'price': price,
-                             'stock': stock})
             logger.info("new product added")
             messagebox.showinfo('Add product', 'new product added')
 

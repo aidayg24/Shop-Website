@@ -43,12 +43,15 @@ fr_main = Frame(store, relief=RAISED, bd=1)
 lbl_welcome = Label(fr_main, text='Maktab store\n\n', fg='black', font=('Garamond', 20))
 file = open("product.csv", 'r')
 row=3
-if len(file.readlines())>1:
-    for line in file.readlines():
-        data = line.strip().split(",")
-        show=Label(fr_main, text="category: " + data[0] + " brand: " + data[1] + " price: " + data[3] + "\n")
-        show.grid(row=row,column=0, sticky="ew", padx=5, pady=5)
-        row+=1
+
+for line in file.readlines():
+    print(line)
+    data = line.strip().split(",")
+    show=Label(fr_main, text='{}    {}    {}'.format(data[0] , data[1] , data[3] )+ "\n")
+    show.grid(row=row,column=0, sticky="w", padx=5, pady=5)
+    print(show)
+    row+=1
+file.close()
 lbl_welcome.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
 fr_main.grid(row=0, column=1, sticky="nsew")
 
