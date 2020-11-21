@@ -1,9 +1,9 @@
 import csv  # importing csv
-from tkinter import ttk  # importing ttk moudls
+from tkinter import ttk  # importing ttk module
 from tkinter import *  # importing tkinter library
-from tkinter import messagebox  # importing messagebox moudls
+from tkinter import messagebox  # importing messagebox module
 import logging  # importing tkinter library for log information
-from admin import Admin  # import class Admin from admin moudle
+from admin import Admin  # import class Admin from admin module
 
 admin = Admin()  # make an object from class admin
 
@@ -26,7 +26,7 @@ class Customer:  # Define the customer class to organize the client's tasks and 
                             "Project 4: Store Accounting\nprogramming by:\ntahere zare(raha),aida rostami,malihe mirzaii")
 
     def add_to_basket(self):
-        # A window will open for the customer to enter the product and brand name and the number she wants to make a purchase
+    # A window will open for the customer to enter the product and brand name and the number she wants to make a purchase
         addtobaskt = Toplevel()  # making a top window
 
         addtobaskt.menubar = Menu(addtobaskt)
