@@ -1,11 +1,10 @@
 from tkinter import *  # importing tkinter library
-from tkinter import ttk
-from tkinter import messagebox
-from admin import Admin
-from customer import Customer
+from tkinter import messagebox #importing messagebox moudls
+from admin import Admin #import class Admin from admin moudle
+from customer import Customer#import class Customer from customer moudle
 
-admin=Admin()
-customer=Customer()
+admin=Admin() #make an object from class admin
+customer=Customer() #make an object from class customer
 
 def about():
     messagebox.showinfo("about maktab store",
