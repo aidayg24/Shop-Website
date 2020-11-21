@@ -1,1 +1,14 @@
 INFO 2020-11-21 15:28:16,108 - admin log in!
+INFO 2020-11-21 15:33:53,326 - admin log in!
+INFO 2020-11-21 15:34:13,732 - new product added
+INFO 2020-11-21 15:34:31,306 - new product added
+INFO 2020-11-21 15:34:51,451 - new product added
+INFO 2020-11-21 15:35:22,705 - An item was added to a customers basket
+ERROR 2020-11-21 15:36:06,345 - Unsuccessful attempt to buy goods : Insufficient inventory
+INFO 2020-11-21 15:36:21,995 - An item was added to a customers basket
+INFO 2020-11-21 15:36:26,017 - A purchase was made
+INFO 2020-11-21 15:38:23,530 - admin log in!
+INFO 2020-11-21 15:38:40,403 - new product added
+INFO 2020-11-21 15:39:00,001 - new product added
+INFO 2020-11-21 15:39:32,844 - An item was added to a customers basket
+INFO 2020-11-21 15:39:37,081 - A purchase was made

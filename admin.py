@@ -300,7 +300,6 @@ class Admin:
             data = line.strip().split(",")
             if data[2].strip() == self.barcode.get().lower().strip():
                 stock = int(str(data[4]))
-                print(int(self.num.get()))
                 stock += int(self.num.get())
                 data[4] = str(stock)
                 new_data = ",".join(data)

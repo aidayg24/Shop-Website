@@ -159,6 +159,5 @@ class Customer:
                     file_overwrite.write(newdata+'\n')
                 else:
                     newdata = ','.join(data)
-                    print(newdata)
                     file_overwrite.write(newdata+'\n')
             file_overwrite.close()
