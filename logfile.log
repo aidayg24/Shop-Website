@@ -1,0 +1,44 @@
+INFO 2020-11-21 15:28:16,108 - admin log in!
+INFO 2020-11-21 15:33:53,326 - admin log in!
+INFO 2020-11-21 15:34:13,732 - new product added
+INFO 2020-11-21 15:34:31,306 - new product added
+INFO 2020-11-21 15:34:51,451 - new product added
+INFO 2020-11-21 15:35:22,705 - An item was added to a customers basket
+ERROR 2020-11-21 15:36:06,345 - Unsuccessful attempt to buy goods : Insufficient inventory
+INFO 2020-11-21 15:36:21,995 - An item was added to a customers basket
+INFO 2020-11-21 15:36:26,017 - A purchase was made
+INFO 2020-11-21 15:38:23,530 - admin log in!
+INFO 2020-11-21 15:38:40,403 - new product added
+INFO 2020-11-21 15:39:00,001 - new product added
+INFO 2020-11-21 15:39:32,844 - An item was added to a customers basket
+INFO 2020-11-21 15:39:37,081 - A purchase was made
+INFO 2020-11-21 15:46:06,688 - admin log in!
+INFO 2020-11-21 15:46:21,893 - new product added
+INFO 2020-11-21 15:46:35,672 - new product added
+INFO 2020-11-21 17:06:46,971 - admin log in!
+INFO 2020-11-21 17:07:13,220 - new product added
+INFO 2020-11-21 17:07:38,316 - new product added
+INFO 2020-11-21 17:07:57,627 - admin log in!
+INFO 2020-11-21 17:08:22,488 - The inventory was charged
+INFO 2020-11-21 17:08:57,235 - admin log in!
+INFO 2020-11-21 17:09:05,248 - The inventory was charged
+INFO 2020-11-21 17:09:17,867 - admin log in!
+INFO 2020-11-21 17:09:43,508 - new product added
+INFO 2020-11-21 17:10:26,251 - admin log in!
+INFO 2020-11-21 17:11:01,305 - An item was added to a customers basket
+INFO 2020-11-21 17:11:17,128 - An item was added to a customers basket
+INFO 2020-11-21 17:11:26,120 - A purchase was made
+INFO 2020-11-21 17:11:38,227 - admin log in!
+WARNING 2020-11-21 17:11:41,440 - Inventory with rha22 barcode is exhausted
+INFO 2020-11-21 17:11:56,003 - admin log in!
+WARNING 2020-11-21 17:11:57,839 - Inventory with rha22 barcode is exhausted
+INFO 2020-11-21 17:13:07,762 - admin log in!
+WARNING 2020-11-21 17:13:09,175 - Inventory with rha22 barcode is exhausted
+INFO 2020-11-21 17:13:45,937 - An item was added to a customers basket
+INFO 2020-11-21 17:13:50,423 - A purchase was made
+INFO 2020-11-21 17:13:55,499 - admin log in!
+WARNING 2020-11-21 17:13:57,784 - Inventory with rha22 barcode is exhausted
+INFO 2020-11-21 17:14:30,104 - An item was added to a customers basket
+INFO 2020-11-21 17:14:34,217 - A purchase was made
+INFO 2020-11-21 17:14:37,802 - admin log in!
+WARNING 2020-11-21 17:14:39,474 - Inventory with rha22 barcode is exhausted
