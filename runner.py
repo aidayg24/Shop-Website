@@ -43,16 +43,19 @@ lbl_welcome = Label(fr_main, text='Maktab store\n\n', fg='black', font=('Garamon
 #By default, the customer is recognized at the beginning of entering the customer's store
 file = open("product.csv", 'r')
 row=3
-for line in file.readlines():
-    data = line.strip().split(",")
-    #The customer is shown only the name of the product, brand and price:
-    nameproduc=Label(fr_main,text=data[0])
-    brand=Label(fr_main,text=data[1])
-    price=Label(fr_main,text=data[3])
-    nameproduc.grid(row=row,column=0, sticky="w", padx=5, pady=5)
-    brand.grid(row=row,column=1, sticky="w", padx=5, pady=5)
-    price.grid(row=row,column=2, sticky="w", padx=5, pady=5)
-    row+=1
+lines=file.readlines()
+if len(lines)>1 :
+    print('hi')
+    for line in lines:
+        data = line.strip().split(",")
+        #The customer is shown only the name of the product, brand and price:
+        nameproduc=Label(fr_main,text=data[0])
+        brand=Label(fr_main,text=data[1])
+        price=Label(fr_main,text=data[3])
+        nameproduc.grid(row=row,column=0, sticky="w", padx=5, pady=5)
+        brand.grid(row=row,column=1, sticky="w", padx=5, pady=5)
+        price.grid(row=row,column=2, sticky="w", padx=5, pady=5)
+        row+=1
 
 btn_buy=Button(fr_main, text="Buy something", bg='red4', command=customer.add_to_basket).grid(row=row, column=0, sticky="ew", padx=5)
 file.close()

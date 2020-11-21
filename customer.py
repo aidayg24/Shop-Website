@@ -150,14 +150,19 @@ class Customer:
             file_data = file.readlines()
             file.close()
             file_overwrite = open("product.csv", 'w')
+            line_counter=1
             for line in file_data:
-                data = line.strip().split(",")
-                if data[2].strip() == item[2].strip():
-                    newstock=int(data[4])-int(item[3])
-                    data[4] = str(newstock)
-                    newdata= ','.join(data)
-                    file_overwrite.write(newdata+'\n')
+                if line_counter>1:
+                    data = line.strip().split(",")
+                    if data[2].strip() == item[2].strip():
+                        newstock=int(data[4])-int(item[3])
+                        data[4] = str(newstock)
+                        newdata= ','.join(data)
+                        file_overwrite.write(newdata+'\n')
+                    else:
+                        newdata = ','.join(data)
+                        file_overwrite.write(newdata+'\n')
                 else:
-                    newdata = ','.join(data)
-                    file_overwrite.write(newdata+'\n')
+                    file_overwrite.write(line)
+                line_counter+=1
             file_overwrite.close()
