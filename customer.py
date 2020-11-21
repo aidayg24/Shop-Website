@@ -54,6 +54,7 @@ class Customer:
         self.number.grid(row=4, column=1, sticky=W)
         fr_main.grid(row=0, column=1, sticky="nsew")
         addtobaskt.mainloop()
+
     def added(self):
         self.price=0
         barcode=None
@@ -151,10 +152,13 @@ class Customer:
             file_overwrite = open("product.csv", 'w')
             for line in file_data:
                 data = line.strip().split(",")
-                if data[2] == item[2]:
-                    data[4] = str(int(data[4])-item[3])
+                if data[2].strip() == item[2].strip():
+                    newstock=int(data[4])-int(item[3])
+                    data[4] = str(newstock)
                     newdata= ','.join(data)
                     file_overwrite.write(newdata+'\n')
                 else:
                     newdata = ','.join(data)
+                    print(newdata)
                     file_overwrite.write(newdata+'\n')
+            file_overwrite.close()
