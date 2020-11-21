@@ -19,7 +19,7 @@ logger = logging.getLogger()
 class Customer:  # Define the customer class to organize the client's tasks and authority
     def __init__(self):
         # for save information use tuple cuse tuple is a collection which is ordered and unchangeable.
-        self.basket = {'info': ('name', 'brand', 'barcode', 'number', 'price for one', 'hole price', 'total sum')}
+        self.basket = {'info': ('Name', 'Brand', 'Barcode', 'Number', 'Price for one', 'Whole price', 'Total sum')}
 
     def about(self):  # This function displays information about the application
         messagebox.showinfo("about maktab store",
