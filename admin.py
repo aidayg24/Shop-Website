@@ -72,8 +72,8 @@ class Admin:
                 row=0, column=0, sticky="ew", padx=5, pady=5)
             btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
                 row=1, column=0, sticky="ew", padx=5, pady=5)
-            # btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
-            #                     command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+            btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                                command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
             btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
                                    command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5,pady=5)
             btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=loggingadmin.quit).grid(row=10, column=0,
@@ -118,8 +118,8 @@ class Admin:
             row=0, column=0, sticky="ew", padx=5, pady=5)
         btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
             row=1, column=0, sticky="ew", padx=5, pady=5)
-        # btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
-        #                     command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
         btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
                                command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=addproduct.quit).grid(row=10, column=0,
@@ -181,8 +181,8 @@ class Admin:
             row=0, column=0, sticky="ew", padx=5, pady=5)
         btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
             row=1, column=0, sticky="ew", padx=5, pady=5)
-        # btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
-        #                     command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
         btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
                                command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=seeinvokes.quit).grid(row=10, column=0,
@@ -228,8 +228,8 @@ class Admin:
             row=0, column=0, sticky="ew", padx=5, pady=5)
         btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
             row=1, column=0, sticky="ew", padx=5, pady=5)
-        # btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
-        #                     command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
         btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
                                command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
         btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=loggingadmin.quit).grid(row=10, column=0,
@@ -255,55 +255,59 @@ class Admin:
             row += 1
         fr_main.grid(row=0, column=1, sticky="nsew")
         file = open("product.csv", 'r')
-    # def charge_stock_by_admin(self):
-    #     charge = Toplevel()
-    #     charge.menubar = Menu(charge)
-    #     charge.helpmenu = Menu(charge.menubar, tearoff=0)
-    #     charge.helpmenu.add_command(label="About", command=self.about)
-    #     charge.menubar.add_cascade(label="Help", menu=charge.helpmenu)
-    #     charge.config(menu=charge.menubar)  # display the menu
-    #     charge.scrollbar = Scrollbar(charge).grid(row=0, column=0, sticky="nes")
-    #     logger.info("admin log in!")
-    #     charge.rowconfigure(0, minsize=800, weight=1)
-    #     charge.columnconfigure(1, minsize=800, weight=1)
-    #     taskbar_frame = Frame(charge, relief=RAISED, bd=2, bg='grey')
-    #     btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product).grid(
-    #         row=0, column=0, sticky="ew", padx=5, pady=5)
-    #     btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
-    #         row=1, column=0, sticky="ew", padx=5, pady=5)
-    #     btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
-    #                         command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
-    #     btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
-    #                            command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
-    #     btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=charge.quit).grid(row=10, column=0,
-    #                                                                                        sticky="ew", padx=5)
-    #     taskbar_frame.grid(row=0, column=0, sticky="ns")
-    #
-    #     fr_main = Frame(charge, relief=RAISED, bd=1)
-    #     self.barcode = Entry(fr_main, width=30)
-    #     num = Scale(fr_main, from_=1, to=100, orient=HORIZONTAL)
-    #     charge_btn = Button(fr_main, text='Charge', command=self.charged).grid(row=4, column=1, padx=100, pady=6)
-    #     lbl_barcode = ttk.Label(fr_main, text="barcode : ").grid(row=2, column=0)
-    #     lbl_num = ttk.Label(fr_main, text="How many? ").grid(row=3, column=0)
-    #     self.barcode.grid(row=2, column=1, sticky=W)
-    #     num.grid(row=3, column=1, sticky=W)
-    #     fr_main.grid(row=0, column=1, sticky="nsew")
-    #     self.the_num = int(num.get())
-    #
-    # def charged(self):
-    #     """ the function opens the csv file that contains the list of products
-    #         and updates the stock(number of a product) after admin charge it."""
-    #     file = open("product.csv", 'r')
-    #     file_data = file.readlines()
-    #     file.close()
-    #     file_overwrite = open("product.csv", 'w')
-    #     for line in file_data:
-    #         data = line.strip().split(",")
-    #         if data[2] == self.barcode.get().lower().strip():
-    #             stock = int(str(data[4]))
-    #             stock += self.the_num
-    #             data[4] = str(stock)
-    #             new_data = ",".join(data)
-    #             file_overwrite.write(new_data + "\n")
-    #             messagebox.showinfo('charge product', 'inventory increased')
-    #             logger.info('The inventory was charged')
+    def charge_stock_by_admin(self):
+        charge = Toplevel()
+        charge.menubar = Menu(charge)
+        charge.helpmenu = Menu(charge.menubar, tearoff=0)
+        charge.helpmenu.add_command(label="About", command=self.about)
+        charge.menubar.add_cascade(label="Help", menu=charge.helpmenu)
+        charge.config(menu=charge.menubar)  # display the menu
+        charge.scrollbar = Scrollbar(charge).grid(row=0, column=0, sticky="nes")
+        logger.info("admin log in!")
+        charge.rowconfigure(0, minsize=800, weight=1)
+        charge.columnconfigure(1, minsize=800, weight=1)
+        taskbar_frame = Frame(charge, relief=RAISED, bd=2, bg='grey')
+        btn_add = Button(taskbar_frame, text='New Product', bg='VioletRed4', command=self.add_new_product).grid(
+            row=0, column=0, sticky="ew", padx=5, pady=5)
+        btn_invoice = Button(taskbar_frame, text='Invoices', bg='VioletRed4', command=self.show_invoices).grid(
+            row=1, column=0, sticky="ew", padx=5, pady=5)
+        btn_charge = Button(taskbar_frame, text='Charge Product', bg='VioletRed4',
+                            command=self.charge_stock_by_admin).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
+        btn_storeroom = Button(taskbar_frame, text='storeroom', bg='VioletRed4',
+                               command=self.seeproduct).grid(row=4, column=0, sticky="ew", padx=5, pady=5)
+        btn_exit = Button(taskbar_frame, text="Exit", bg='red4', command=charge.quit).grid(row=10, column=0,
+                                                                                           sticky="ew", padx=5)
+        taskbar_frame.grid(row=0, column=0, sticky="ns")
+
+        fr_main = Frame(charge, relief=RAISED, bd=1)
+        self.barcode = Entry(fr_main, width=30)
+        self.num = Scale(fr_main, from_=0, to=100, orient=HORIZONTAL)
+        charge_btn = Button(fr_main, text='Charge', command=self.charged).grid(row=4, column=1, padx=100, pady=6)
+        lbl_barcode = ttk.Label(fr_main, text="barcode : ").grid(row=2, column=0)
+        lbl_num = ttk.Label(fr_main, text="How many? ").grid(row=3, column=0)
+        self.barcode.grid(row=2, column=1, sticky=W)
+        self.num.grid(row=3, column=1, sticky=W)
+        fr_main.grid(row=0, column=1, sticky="nsew")
+
+    def charged(self):
+        """ the function opens the csv file that contains the list of products
+            and updates the stock(number of a product) after admin charge it."""
+        file = open("product.csv", 'r')
+        file_data = file.readlines()
+        file.close()
+        file_overwrite = open("product.csv", 'w')
+        for line in file_data:
+            data = line.strip().split(",")
+            if data[2].strip() == self.barcode.get().lower().strip():
+                stock = int(str(data[4]))
+                print(int(self.num.get()))
+                stock += int(self.num.get())
+                data[4] = str(stock)
+                new_data = ",".join(data)
+                file_overwrite.write(new_data + "\n")
+            else:
+                new_data = ",".join(data)
+                file_overwrite.write(new_data + "\n")
+        file_overwrite.close()
+        messagebox.showinfo('charge product', 'inventory increased')
+        logger.info('The inventory was charged')
