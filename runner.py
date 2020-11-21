@@ -44,8 +44,7 @@ lbl_welcome = Label(fr_main, text='Maktab store\n\n', fg='black', font=('Garamon
 file = open("product.csv", 'r')
 row=3
 lines=file.readlines()
-if len(lines)>1 :
-    print('hi')
+if len(lines)>1 : #If a product is defined
     for line in lines:
         data = line.strip().split(",")
         #The customer is shown only the name of the product, brand and price:
