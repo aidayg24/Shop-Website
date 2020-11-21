@@ -16,7 +16,7 @@ logger = logging.getLogger()
 
 class Customer:
     def __init__(self):
-        self.basket= {}
+        self.basket= {'info':('name','brand','barcode','number','price for one','hole price','totall sum')}
 
     def about(self):
         messagebox.showinfo("about maktab store",
@@ -68,7 +68,7 @@ class Customer:
             if data[2] == barcode:
                 if int(self.number.get().strip()) < int(data[4]):
                     the_price_of_one = int(data[3])
-                    self.basket[barcode] = (data[0],data[1], data[2],int(self.number.get().strip()),data[3],the_price_of_one * int(self.number.get().strip()))
+                    self.basket[barcode] = (data[0],data[1], data[2],int(self.number.get().strip()),data[3],the_price_of_one * int(self.number.get().strip()),None)
                     self.price += the_price_of_one * int(self.number.get().strip())
                     messagebox.showinfo('Buy','Product added to your basket')
                     logger.info('An item was added to a customers basket')
@@ -109,15 +109,17 @@ class Customer:
         row=2
         self.totallsum=0
         for product in self.basket.values():
-            producnamebrand = Label(fr_main, text=product[0]+','+product[1])
-            price = Label(fr_main, text=product[4])
-            number = Label(fr_main,text=product[3])
-            self.totallsum += int(product[5])
-            sum = Label(fr_main,text=str(product[5]))
-            producnamebrand.grid(row=row, column=0, sticky="w", padx=5, pady=5)
-            number.grid(row=row, column=1, sticky="w", padx=5, pady=5)
-            price.grid(row=row, column=2, sticky="w", padx=5, pady=5)
-            sum.grid(row=row, column=3, sticky="w", padx=5, pady=5)
+            if row > 2:
+                producnamebrand = Label(fr_main, text=product[0]+','+product[1])
+                price = Label(fr_main, text=product[4])
+                number = Label(fr_main,text=product[3])
+
+                self.totallsum += int(product[5])
+                sum = Label(fr_main,text=str(product[5]))
+                producnamebrand.grid(row=row, column=0, sticky="w", padx=5, pady=5)
+                number.grid(row=row, column=1, sticky="w", padx=5, pady=5)
+                price.grid(row=row, column=2, sticky="w", padx=5, pady=5)
+                sum.grid(row=row, column=3, sticky="w", padx=5, pady=5)
             row += 1
         totall= Label(fr_main,text='totall sum = '+str(self.totallsum))
         totall.grid(row=row, column=3, sticky="w", padx=5, pady=5)
@@ -132,19 +134,27 @@ class Customer:
         with open('invoice.csv', 'a', newline='') as invoice:
             fieldnames = ['category', 'brand', 'barcode','number', 'price of one product', 'hole price','totall sum']
             writer = csv.DictWriter(invoice, fieldnames=fieldnames)
-            for item in self.basket.keys():
-                new_data = str(self.basket[item]).strip().split(" ")
-                writer.writerow({'category': new_data[0],
-                                 'brand': new_data[1],
-                                 'barcode': new_data[2],
-                                 'number' : new_data[3],
-                                 'price of one product': new_data[4],
-                                 'hole price': new_data[5],
-                                 'totall sum': None})
-            writer.writerow({'category': "\n",
-                             'brand': "\n",
-                             'barcode': "\n",
-                             'price of one product': "\n",
-                             'hole price': "\n",
-                             'totall sum': self.totallsum})
+            for item in self.basket.values():
+                writer.writerow({'category': item[0].strip(),
+                                 'brand': item[1].strip(),
+                                 'barcode': item[2].strip(),
+                                 'number' : item[3],
+                                 'price of one product': item[4].strip(),
+                                 'hole price': item[5],
+                                 'totall sum':item[6]})
+            writer.writerow({'totall sum': self.totallsum})
 
+        for item in self.basket.values():
+            file = open("product.csv", 'r')
+            file_data = file.readlines()
+            file.close()
+            file_overwrite = open("product.csv", 'w')
+            for line in file_data:
+                data = line.strip().split(",")
+                if data[2] == item[2]:
+                    data[4] = str(int(data[4])-item[3])
+                    newdata= ','.join(data)
+                    file_overwrite.write(newdata+'\n')
+                else:
+                    newdata = ','.join(data)
+                    file_overwrite.write(newdata+'\n')

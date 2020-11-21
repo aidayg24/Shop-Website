@@ -114,3 +114,71 @@ INFO 2020-11-21 12:53:46,150 - An item was added to a customers basket
 INFO 2020-11-21 12:54:52,183 - An item was added to a customers basket
 INFO 2020-11-21 12:56:47,142 - An item was added to a customers basket
 INFO 2020-11-21 12:56:57,750 - A purchase was made
+INFO 2020-11-21 13:04:21,738 - admin log in!
+WARNING 2020-11-21 13:04:24,198 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:17:54,577 - An item was added to a customers basket
+INFO 2020-11-21 13:18:15,692 - An item was added to a customers basket
+INFO 2020-11-21 13:19:23,533 - An item was added to a customers basket
+INFO 2020-11-21 13:20:43,936 - An item was added to a customers basket
+INFO 2020-11-21 13:21:06,491 - An item was added to a customers basket
+INFO 2020-11-21 13:22:17,892 - An item was added to a customers basket
+INFO 2020-11-21 13:24:06,611 - An item was added to a customers basket
+INFO 2020-11-21 13:24:11,212 - A purchase was made
+INFO 2020-11-21 13:25:10,166 - admin log in!
+WARNING 2020-11-21 13:25:11,685 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:25:16,320 - admin log in!
+INFO 2020-11-21 13:26:24,853 - admin log in!
+WARNING 2020-11-21 13:26:26,235 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:29:18,527 - admin log in!
+WARNING 2020-11-21 13:29:20,211 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:30:40,492 - admin log in!
+WARNING 2020-11-21 13:30:41,956 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:38:20,251 - An item was added to a customers basket
+INFO 2020-11-21 13:38:26,866 - A purchase was made
+INFO 2020-11-21 13:39:49,642 - An item was added to a customers basket
+INFO 2020-11-21 13:39:55,260 - A purchase was made
+INFO 2020-11-21 13:41:27,651 - An item was added to a customers basket
+INFO 2020-11-21 13:41:33,466 - A purchase was made
+INFO 2020-11-21 13:42:11,962 - An item was added to a customers basket
+INFO 2020-11-21 13:42:17,435 - A purchase was made
+INFO 2020-11-21 13:44:07,898 - An item was added to a customers basket
+INFO 2020-11-21 13:44:11,724 - A purchase was made
+INFO 2020-11-21 13:45:31,778 - An item was added to a customers basket
+INFO 2020-11-21 13:45:37,123 - A purchase was made
+INFO 2020-11-21 13:49:21,174 - admin log in!
+WARNING 2020-11-21 13:49:23,170 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:52:04,809 - An item was added to a customers basket
+INFO 2020-11-21 13:52:09,922 - A purchase was made
+INFO 2020-11-21 13:52:22,125 - admin log in!
+WARNING 2020-11-21 13:52:24,227 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:58:29,729 - An item was added to a customers basket
+INFO 2020-11-21 13:58:35,077 - admin log in!
+WARNING 2020-11-21 13:58:36,745 - Inventory with c barcode is exhausted
+INFO 2020-11-21 13:59:51,804 - admin log in!
+WARNING 2020-11-21 13:59:53,624 - Inventory with c barcode is exhausted
+INFO 2020-11-21 14:00:14,180 - new product added
+INFO 2020-11-21 14:00:17,188 - admin log in!
+INFO 2020-11-21 14:00:23,988 - admin log in!
+ERROR 2020-11-21 14:00:33,681 - Enter an invalid barcode to charge the goods
+ERROR 2020-11-21 14:00:34,833 - Enter an invalid barcode to charge the goods
+ERROR 2020-11-21 14:00:35,481 - Enter an invalid barcode to charge the goods
+ERROR 2020-11-21 14:00:36,536 - Enter an invalid barcode to charge the goods
+ERROR 2020-11-21 14:00:37,184 - Enter an invalid barcode to charge the goods
+INFO 2020-11-21 14:02:17,764 - admin log in!
+WARNING 2020-11-21 14:02:19,225 - Inventory with c barcode is exhausted
+INFO 2020-11-21 14:02:20,780 - admin log in!
+ERROR 2020-11-21 14:02:28,217 - Enter an invalid barcode to charge the goods
+INFO 2020-11-21 14:02:35,844 - admin log in!
+INFO 2020-11-21 14:04:13,987 - admin log in!
+INFO 2020-11-21 14:04:30,836 - new product added
+INFO 2020-11-21 14:04:46,172 - new product added
+INFO 2020-11-21 14:04:55,483 - new product added
+INFO 2020-11-21 14:05:12,643 - admin log in!
+INFO 2020-11-21 14:05:16,036 - admin log in!
+INFO 2020-11-21 14:05:28,121 - The inventory was charged
+INFO 2020-11-21 14:05:30,179 - admin log in!
+INFO 2020-11-21 14:08:21,507 - admin log in!
+INFO 2020-11-21 14:18:38,233 - An item was added to a customers basket
+INFO 2020-11-21 14:18:42,543 - A purchase was made
+INFO 2020-11-21 14:19:09,287 - An item was added to a customers basket
+INFO 2020-11-21 14:19:12,527 - A purchase was made
