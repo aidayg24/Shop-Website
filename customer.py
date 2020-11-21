@@ -16,7 +16,7 @@ logger = logging.getLogger()
 
 class Customer:
     def __init__(self):
-        self.basket=[]
+        self.basket= {}
 
     def about(self):
         messagebox.showinfo("about maktab store",
@@ -53,22 +53,29 @@ class Customer:
         self.brand.grid(row=3, column=1, sticky=W)
         self.number.grid(row=4, column=1, sticky=W)
         fr_main.grid(row=0, column=1, sticky="nsew")
-
         addtobaskt.mainloop()
     def added(self):
+        self.price=0
+        barcode=None
         file = open("product.csv", 'r')
         for line in file.readlines():
             data = line.strip().split(",")
-            if self.product_name.get() == data[0] and self.brand.get() == data[1]:
-                num = int(self.number.get())
-                if int(self.number.get())<int(data[4]):
-                    self.basket.append((data[0],data[1],data[3],num))
+            if self.product_name.get().lower().strip() == data[0] and self.brand.get().lower().strip() == data[1]:
+                barcode=data[2]
+        file = open("product.csv", 'r')
+        for line in file.readlines():
+            data = line.strip().split(",")
+            if data[2] == barcode:
+                if int(self.number.get().strip()) < int(data[4]):
+                    the_price_of_one = int(data[3])
+                    self.basket[barcode] = (data[0],data[1], data[2],int(self.number.get().strip()),data[3],the_price_of_one * int(self.number.get().strip()))
+                    self.price += the_price_of_one * int(self.number.get().strip())
                     messagebox.showinfo('Buy','Product added to your basket')
                     logger.info('An item was added to a customers basket')
-
                 else:
                     messagebox.showerror('Buy', 'The amount you want is more than the inventory')
-                    logger.error('Unsuccessful attempt to buy goods')
+                    logger.error('Unsuccessful attempt to buy goods : Insufficient inventory')
+
 
     def showbasket(self):
         baskett=Toplevel()
@@ -101,12 +108,12 @@ class Customer:
         sum.grid(row=0, column=3, sticky="w", padx=5, pady=5)
         row=2
         self.totallsum=0
-        for product in self.basket:
+        for product in self.basket.values():
             producnamebrand = Label(fr_main, text=product[0]+','+product[1])
-            price = Label(fr_main, text=product[2])
+            price = Label(fr_main, text=product[4])
             number = Label(fr_main,text=product[3])
-            self.totallsum += int(product[2])*int(product[3])
-            sum = Label(fr_main,text=str(int(product[2])*int(product[3])))
+            self.totallsum += int(product[5])
+            sum = Label(fr_main,text=str(product[5]))
             producnamebrand.grid(row=row, column=0, sticky="w", padx=5, pady=5)
             number.grid(row=row, column=1, sticky="w", padx=5, pady=5)
             price.grid(row=row, column=2, sticky="w", padx=5, pady=5)
@@ -118,44 +125,26 @@ class Customer:
         buy_btn.grid(row=row+1,sticky="w", padx=5, pady=5)
         fr_main.grid(row=0, column=1, sticky="nsew")
         baskett.mainloop()
+
     def buy(self):
         messagebox.showinfo('Buy','Your purchase has been registered')
         logger.info('A purchase was made')
-        file = open("product.csv", 'r')
-        file_data = file.readlines()
-        file.close()
-        for product in self.basket:
-            product_name = product[0]
-            brand = product[1]
-            the_num = int(product[4])
-            file_overwrite = open("product.csv", 'w')
-            for line in file_data:
-                data = line.strip().split(",")
-                if data[0] == product_name and data[1] == brand:
-                    stock = int(str(data[4]))
-                    stock -= the_num
-                    data[4] = str(stock)
-                    new_data = ",".join(data)
-                    file_overwrite.write(new_data + "\n")
+        with open('invoice.csv', 'a', newline='') as invoice:
+            fieldnames = ['category', 'brand', 'barcode','number', 'price of one product', 'hole price','totall sum']
+            writer = csv.DictWriter(invoice, fieldnames=fieldnames)
+            for item in self.basket.keys():
+                new_data = str(self.basket[item]).strip().split(" ")
+                writer.writerow({'category': new_data[0],
+                                 'brand': new_data[1],
+                                 'barcode': new_data[2],
+                                 'number' : new_data[3],
+                                 'price of one product': new_data[4],
+                                 'hole price': new_data[5],
+                                 'totall sum': None})
+            writer.writerow({'category': "\n",
+                             'brand': "\n",
+                             'barcode': "\n",
+                             'price of one product': "\n",
+                             'hole price': "\n",
+                             'totall sum': self.totallsum})
 
-        with open('invoke.csv', 'a', newline='') as csvpr:
-            fieldnames = ['product name', 'number', 'price', 'sum','total sum']
-            writer = csv.DictWriter(csvpr, fieldnames=fieldnames)
-            for invoke in self.basket:
-                writer.writerow({'product name': invoke[0]+' - '+invoke[1],
-                                'number': invoke[3],
-                                'price': invoke[2],
-                                'sum': int(invoke[2])*int(invoke[3])})
-            writer.writerow({'total sum': str(self.totallsum)})
-            csvpr.write('\n\n')
-        """the customer selects an item to buy and add that to the basket """
-        pass
-
-    def remove(self, basket):
-        """the customer can remove an item from the basket before he or she get the final invoice"""
-        pass
-
-    def the_invoice(self, invoice, price):
-        """this method records the final items in basket and gives an invoice and the price to
-        customer and updates the entrepot """
-        pass
