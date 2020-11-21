@@ -26,7 +26,7 @@ class Customer:  # Define the customer class to organize the client's tasks and 
                             "Project 4: Store Accounting\nprogramming by:\ntahere zare(raha),aida rostami,malihe mirzaii")
 
     def add_to_basket(self):
-    # A window will open for the customer to enter the product and brand name and the number she wants to make a purchase
+        # A window will open for the customer to enter the product and brand name and the number she wants to make a purchase
         addtobaskt = Toplevel()  # making a top window
 
         addtobaskt.menubar = Menu(addtobaskt)
@@ -78,7 +78,7 @@ class Customer:  # Define the customer class to organize the client's tasks and 
             data = line.strip().split(",")
             if self.product_name.get().lower().strip() == data[0] and self.brand.get().lower().strip() == data[1]:
                 barcode = data[2]
-                if int(self.number.get().strip()) < int(data[4]):  # Check inventory number
+                if int(self.number.get().strip()) <= int(data[4]):  # Check inventory number
                     the_price_of_one = int(data[3])
                     # We store the product information with the barcode found in the basket
                     self.basket[barcode] = (data[0], data[1], data[2], int(self.number.get().strip()), data[3],
