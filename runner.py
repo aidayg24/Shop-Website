@@ -59,7 +59,7 @@ if len(lines) > 1:  # If a product is defined
         price.grid(row=row, column=2, sticky="w", padx=5, pady=5)
         row += 1
 
-btn_buy = Button(fr_main, text="Buy something", bg='red4', command=customer.add_to_basket).grid(row=row, column=0,
+    btn_buy = Button(fr_main, text="Buy something", bg='red4', command=customer.add_to_basket).grid(row=row, column=0,
                                                                                                 sticky="ew", padx=5)
 file.close()
 lbl_welcome.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
